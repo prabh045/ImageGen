@@ -11,18 +11,14 @@ import ImagePlayground
 @Observable
 class ImageGenerator {
     var recipe = ImageGenerator.defaultRecipe
-    var style: ImagePlaygroundStyle?
+    var style = ImageGenerator.defaultStyle
     
     //ImagePlaygroundConcept - provide text to incorporate into the image-creation process.
     var concepts: [ImagePlaygroundConcept] {
         [ImagePlaygroundConcept.text(recipe)]
     }
     
-    func generateImage() async throws -> ImageCreator.CreatedImage {
-        guard let style else {
-            throw ImageCreator.Error.creationCancelled
-        }
-        
+    func generateImage() async throws -> ImageCreator.CreatedImage {        
         let imageCreator = try await ImageCreator()
         let images = imageCreator.images(for: concepts, style: style, limit: 1)
         
@@ -44,4 +40,5 @@ extension ImageGenerator {
     ]
     static let imageSize: CGFloat = 256
     private static let defaultRecipe = recipes[0]
+    private static let defaultStyle = styles[0]
 }

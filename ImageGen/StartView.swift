@@ -43,6 +43,7 @@ struct StartView: View {
         .toolbar(content: {
             ToolbarItem(placement: .primaryAction) {
                 Button("Generate Image") {
+                    print("params are \(imageGenerator.recipe) and \(imageGenerator.style)")
                     if supportsImagePlayground {
                         showImagePlayground = true
                     } else {
@@ -50,13 +51,13 @@ struct StartView: View {
                     }
                 }
                 .buttonStyle(.glassProminent)
-                .disabled(imageGenerator.style == nil)
             }
         })
         .imagePlaygroundSheet(isPresented: $showImagePlayground, concept: imageGenerator.recipe, onCompletion: { url in
             appManager.createdImageURL = url
             print("Generated image:", url)
         })
+        .imagePlaygroundGenerationStyle(imageGenerator.style)
         .pickerStyle(.segmented)
         .labelsHidden()
         .frame(width: ImageGenerator.imageSize)
