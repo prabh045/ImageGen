@@ -15,6 +15,7 @@ struct KitchenView: View {
             Text("Refine Your Dish")
                 .font(.largeTitle.weight(.semibold))
             imageArea
+            ImageButtonsView()
             Spacer()
             if let error = appManager.error {
                 Text(error.localizedDescription)
@@ -34,6 +35,7 @@ struct KitchenView: View {
     private var imageArea: some View {
         Group {
             if let url = appManager.createdImageURL, let image = NSImage(contentsOf: url) {
+                let _ = appManager.currentImage = image
                 Image(nsImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)

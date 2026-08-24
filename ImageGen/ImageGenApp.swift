@@ -16,5 +16,11 @@ struct ImageGenApp: App {
             ContentView()
                 .environment(appManager)
         }
+        .commands {
+            CommandMenu("Action") {
+                ImageButtonsView(displayForMenu: true)
+                    .environment(appManager)
+            }
+        }
     }
 }
