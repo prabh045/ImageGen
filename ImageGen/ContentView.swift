@@ -13,13 +13,19 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                if let url = appManager.createdImageURL, let image = NSImage(contentsOf: url) {
-                    Image(nsImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                if appManager.showKitchen {
+                    KitchenView()
                 } else {
                     StartView()
                 }
+//                if let url = appManager.createdImageURL, let image = NSImage(contentsOf: url) {
+//                    let _ = appManager.currentImage = image
+//                    Image(nsImage: image)
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                } else {
+//                    StartView()
+//                }
             }
             .overlay {
                 if appManager.isGenerating {

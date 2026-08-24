@@ -32,11 +32,28 @@ class AppManager {
             }
         }
     }
+    
+    func reset() {
+        imageGenerator.resetGenerator()
+        currentImage = nil
+        createdImageURL = nil
+        isGenerating = false
+    }
+    
+    var showKitchen: Bool {
+        createdImageURL != nil
+    }
 }
 
 extension View {
-    func previewEnvironment() -> some View {
+    func previewEnvironment(generateImage: Bool = true) -> some View {
         let appManager = AppManager()
         return environment(appManager)
+            .onAppear {
+                if generateImage {
+                    appManager.imageGenerator.style = .animation
+                    appManager.generateImage()
+                }
+            }
     }
 }

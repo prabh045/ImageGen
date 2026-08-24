@@ -28,6 +28,11 @@ class ImageGenerator {
         
         throw ImageCreator.Error.creationFailed
     }
+    
+    func resetGenerator() {
+        recipe = ImageGenerator.defaultRecipe
+        style = ImageGenerator.defaultStyle
+    }
 }
 
 extension ImageGenerator {
