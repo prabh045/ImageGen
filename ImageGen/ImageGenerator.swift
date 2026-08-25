@@ -12,26 +12,21 @@ import ImagePlayground
 class ImageGenerator {
     var recipe = ImageGenerator.defaultRecipe
     var style = ImageGenerator.defaultStyle
+    var ingredients: [String] = []
     
     //ImagePlaygroundConcept - provide text to incorporate into the image-creation process.
     var concepts: [ImagePlaygroundConcept] {
-        [ImagePlaygroundConcept.text(recipe)]
-    }
-    
-    func generateImage() async throws -> ImageCreator.CreatedImage {        
-        let imageCreator = try await ImageCreator()
-        let images = imageCreator.images(for: concepts, style: style, limit: 1)
-        
-        for try await image in images {
-            return image
+        var playgroundConcepts = [ImagePlaygroundConcept.text(recipe)]
+        for ingredient in ingredients {
+            playgroundConcepts.append(.text(ingredient))
         }
-        
-        throw ImageCreator.Error.creationFailed
+        return playgroundConcepts
     }
-    
+        
     func resetGenerator() {
         recipe = ImageGenerator.defaultRecipe
         style = ImageGenerator.defaultStyle
+        ingredients.removeAll()
     }
 }
 

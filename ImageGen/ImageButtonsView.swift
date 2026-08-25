@@ -32,7 +32,7 @@ struct ImageButtonsView: View {
                     }
             }
         }
-        .imagePlaygroundSheet(isPresented: $showImagePlayground, concept: imageGenerator.recipe, onCompletion: { url in
+        .imagePlaygroundSheet(isPresented: $showImagePlayground, concepts: imageGenerator.concepts, onCompletion: { url in
             appManager.createdImageURL = url
             appManager.generateImage()
         })

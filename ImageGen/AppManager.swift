@@ -48,6 +48,18 @@ class AppManager {
     var showKitchen: Bool {
         createdImageURL != nil
     }
+    
+    func add(ingredient: String) {
+        imageGenerator.ingredients.append(ingredient)
+        generateImage()
+    }
+    
+    func remove(ingredient: String) {
+        if let index = imageGenerator.ingredients.firstIndex(of: ingredient) {
+            imageGenerator.ingredients.remove(at: index)
+        }
+        generateImage()
+    }
 }
 
 extension View {

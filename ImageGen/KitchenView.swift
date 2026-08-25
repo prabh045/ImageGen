@@ -16,6 +16,7 @@ struct KitchenView: View {
                 .font(.largeTitle.weight(.semibold))
             imageArea
             ImageButtonsView()
+            IngredientListView()
             Spacer()
             if let error = appManager.error {
                 Text(error.localizedDescription)
