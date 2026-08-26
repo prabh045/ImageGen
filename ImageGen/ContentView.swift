@@ -14,9 +14,9 @@ struct ContentView: View {
         NavigationStack {
             VStack {
                 if appManager.showKitchen {
-                    KitchenView()
+                    KitchenScreen()
                 } else {
-                    StartView()
+                    StartScreen()
                 }
             }
             .frame(minWidth: ImageGenerator.imageSize, maxWidth: 400, minHeight: 550)
