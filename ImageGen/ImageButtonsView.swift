@@ -32,9 +32,15 @@ struct ImageButtonsView: View {
                     }
             }
         }
-        .imagePlaygroundSheet(isPresented: $showImagePlayground, concepts: imageGenerator.concepts, onCompletion: { url in
-            appManager.createdImageURL = url
-            appManager.generateImage()
+        .imagePlaygroundSheet(
+            isPresented: $showImagePlayground,
+            concept: imageGenerator.recipe,
+            sourceImage: appManager.currentImage.map(Image.init),
+            onCompletion: { url in
+                if let data = try? Data(contentsOf: url), let nsImage = NSImage(data: data) {
+                    appManager.currentImage = nsImage
+                    appManager.createdImageURL = url
+                }
         })
         .imagePlaygroundGenerationStyle(imageGenerator.style)
     }

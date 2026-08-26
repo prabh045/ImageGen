@@ -22,20 +22,6 @@ class AppManager {
             return
         }
         currentImage = NSImage(contentsOf: createdImageURL)
-//        return
-//        error = nil
-//        isGenerating = true
-//        
-//        Task {
-//            do {
-//                let generatedImage = try await imageGenerator.generateImage()
-//                currentImage = NSImage(cgImage: generatedImage.cgImage, size: .zero)
-//                isGenerating = false
-//            } catch {
-//                self.error = error
-//                isGenerating = false
-//            }
-//        }
     }
     
     func reset() {

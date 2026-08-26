@@ -18,15 +18,8 @@ struct ContentView: View {
                 } else {
                     StartView()
                 }
-//                if let url = appManager.createdImageURL, let image = NSImage(contentsOf: url) {
-//                    let _ = appManager.currentImage = image
-//                    Image(nsImage: image)
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                } else {
-//                    StartView()
-//                }
             }
+            .frame(minWidth: ImageGenerator.imageSize, maxWidth: 400, minHeight: 550)
             .overlay {
                 if appManager.isGenerating {
                     loadingView()

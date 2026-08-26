@@ -53,9 +53,15 @@ struct StartView: View {
                 .buttonStyle(.glassProminent)
             }
         })
-        .imagePlaygroundSheet(isPresented: $showImagePlayground, concept: imageGenerator.recipe, onCompletion: { url in
-            appManager.createdImageURL = url
-            print("Generated image:", url)
+        .imagePlaygroundSheet(
+            isPresented: $showImagePlayground,
+            concept: imageGenerator.recipe,
+            sourceImage: appManager.currentImage.map(Image.init),
+            onCompletion: { url in
+                if let data = try? Data(contentsOf: url), let nsImage = NSImage(data: data) {
+                    appManager.currentImage = nsImage
+                    appManager.createdImageURL = url
+                }
         })
         .imagePlaygroundGenerationStyle(imageGenerator.style)
         .pickerStyle(.segmented)
