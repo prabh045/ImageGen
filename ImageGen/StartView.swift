@@ -55,7 +55,7 @@ struct StartView: View {
         })
         .imagePlaygroundSheet(
             isPresented: $showImagePlayground,
-            concept: imageGenerator.recipe,
+            concepts: imageGenerator.concepts,
             sourceImage: appManager.currentImage.map(Image.init),
             onCompletion: { url in
                 if let data = try? Data(contentsOf: url), let nsImage = NSImage(data: data) {
