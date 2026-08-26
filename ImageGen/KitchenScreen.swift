@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct KitchenView: View {
+struct KitchenScreen: View {
     @Environment(AppManager.self) private var appManager
     
     var body: some View {

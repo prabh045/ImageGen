@@ -8,7 +8,7 @@
 import SwiftUI
 import ImagePlayground
 
-struct StartView: View {
+struct StartScreen: View {
     @Environment(AppManager.self) private var appManager
     @Environment(\.supportsImagePlayground) private var supportsImagePlayground
     @State private var showImagePlayground = false
@@ -73,6 +73,6 @@ struct StartView: View {
 }
 
 #Preview {
-    StartView()
+    StartScreen()
         .previewEnvironment()
 }
